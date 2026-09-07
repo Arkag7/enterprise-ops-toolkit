@@ -1,6 +1,4 @@
-import os
-from fastapi import FastAPI, HTTPException
-from google import genai
+from fastapi import FastAPI
 
 app = FastAPI()
 
@@ -30,18 +28,7 @@ def account_analytics():
 
 @app.get("/api/ai/client-intelligence")
 def live_ai_intelligence():
-    api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key:
-        raise HTTPException(status_code=500, detail="GEMINI_API_KEY is missing on Render environment variables.")
-    try:
-        client = genai.Client(api_key=api_key)
-        response = client.models.generate_content(
-            model="gemini-3.6-flash",
-            contents="Analyze an enterprise client account with a 20% drop in usage and generate a concise QBR recommendation for executive retention."
-        )
-        return {
-            "client": "Global Logistics Corp", 
-            "ai_analysis": response.text
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    return {
+        "client": "Global Logistics Corp", 
+        "ai_analysis": "Mock QBR Recommendation: Schedule an executive check-in within 48 hours. Offer a temporary throughput expansion and review automated logging configurations to address the 20% drop in usage."
+    }
