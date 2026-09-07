@@ -36,7 +36,7 @@ def live_ai_intelligence():
     try:
         client = genai.Client(api_key=api_key)
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-3.6-flash",
             contents="Analyze an enterprise client account with a 20% drop in usage and generate a concise QBR recommendation for executive retention."
         )
         return {
